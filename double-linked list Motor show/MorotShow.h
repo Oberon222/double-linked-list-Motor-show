@@ -23,9 +23,12 @@ public:
 
 	void DeleteCar()
 	{
-		for ()
+		for (int i=0;i<cars.size();i++)
 		{
-			
+			if (cars[i].GetGraduationYear() == 2000)
+			{
+				cars.erase(cars.begin()+i);
+			}
 		}
 		
 	}
