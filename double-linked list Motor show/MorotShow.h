@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include<string>
-#include<list>
-#include"Car.h"
 #include<vector>
+#include"Car.h"
+#include<algorithm>
 using namespace std;
 
 class MotorShow
@@ -21,31 +21,61 @@ public:
 
 	
 
+	void DeleteCar(int position)
+	{
+		if (position > cars.size())
+		{
+			cout << "Such a position does not exist"
+				"Position number should not exceed " << cars.size() << endl;
+		}
+		
+		cars.erase(cars.begin(), cars.begin() + (position - 1));
+
+	}
+
 	void DeleteCar()
 	{
-		for (int i=0;i<cars.size();i++)
+		/*cars.erase(remove_if(cars.begin(), cars.end(), [](auto& value) {return value = 2000; }), cars.end());*/
+
+		for (int i = 0; i < cars.size(); i++)
 		{
 			if (cars[i].GetGraduationYear() == 2000)
 			{
-				cars.erase(cars.begin()+i);
+				cars.erase(cars.begin(), cars.begin() + i);
+				
 			}
 		}
-		
+	
 	}
 
 	void ShowInfo()const
 	{
-		for()
+		for (int i = 0; i < cars.size(); i++)
+		{
+			cars[i].ShowCarInfo();
+		
+		}
 	}
 
 	void SortByNane()
 	{
-		
+		sort(cars.begin(), cars.end());
 	}
 
 	void SortByGraduationYear()
 	{
-		
+		for (int i = 0; i < cars.size()-1; i++)
+		{
+			for (int j = 0; j < cars.size()-1; j++)
+			{
+				if (cars[j].GetGraduationYear() > cars[j + 1].GetGraduationYear())
+				{
+					Car tmp = cars[j];
+					cars[j] = cars[j + 1];
+					cars[j + 1] = tmp;
+				}
+			}
+		}
 	}
 
 	void SortByEngineCapacity()
@@ -60,7 +90,15 @@ public:
 
 	void SerchByName(string name)const
 	{
-		
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetName() == name)
+			{
+				cars[i].ShowCarInfo();
+
+			}
+
+		}
 		
 	}
 
