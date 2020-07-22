@@ -59,7 +59,14 @@ public:
 
 	void SortByNane()
 	{
-		sort(cars.begin(), cars.end());
+		/*sort(cars.begin(), cars.end());*/
+
+			for (int i = 0; i < cars.size(); i++)
+			{
+				sort(cars.begin()[i].GetName(), cars.end()[i].GetName());
+
+			}
+
 	}
 
 	void SortByGraduationYear()
@@ -80,7 +87,10 @@ public:
 
 	void SortByEngineCapacity()
 	{
-		
+		for (int i = 0; i < cars.size(); i++)
+		{
+			sort(cars.begin()[i].GetEngineCapacity(), cars.end()[i].GetEngineCapacity());
+		}
 	}
 
 	void SortByPrice()
@@ -104,20 +114,67 @@ public:
 
 	void SerchByGraduationYear(int graduationYear)const
 	{
-
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetGraduationYear() == graduationYear)
+			{
+				cars[i].ShowCarInfo();
+			}
+		}
 	}
 	void SerchByEngineCapacity(double engineCapacity)const
 	{
-
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetEngineCapacity() == engineCapacity)
+			{
+				cars[i].ShowCarInfo();
+			}
+		}
 	}
 
 	void SerchByPrice(int price)
 	{
-
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetPrice() == price)
+			{
+				cars[i].ShowCarInfo();
+			}
+		}
 
 	}
 
+	void Euro_5()
+	{
+		int countEuro_5=0;
+		countEuro_5=count_if(cars.begin(),cars.end(),[] (int myYear){return }
+
+	}
 	
+	void SumaPrice() //  загальна вартість машин, вік яких менше 5 років
+	{
+		int sumPrice=0;
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if ((2020 - cars[i].GetGraduationYear()) < 5)
+			{
+				sumPrice += cars[i].GetPrice();
+			}
+		}
+	}
 	
+	void Discont()
+	{
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if ((2020 - cars[i].GetGraduationYear()) > 15)
+			{
+				cars[i].SetPrice(cars[i].GetPrice() * 0.2);
+			}
+		}
+	}
+
+
 
 };
