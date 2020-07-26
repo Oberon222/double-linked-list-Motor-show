@@ -108,9 +108,7 @@ public:
 				cars[i].ShowCarInfo();
 
 			}
-
 		}
-		
 	}
 
 	void SerchByGraduationYear(int graduationYear)const
@@ -162,9 +160,10 @@ public:
 
 		}
 
+		return countCar2016;
 	}
 	
-	void SumaPrice() //  çàãàëüíà âàðò³ñòü ìàøèí, â³ê ÿêèõ ìåíøå 5 ðîê³â
+	int SumaPrice() //  cars under 5 years
 	{
 		int sumPrice=0;
 		for (int i = 0; i < cars.size(); i++)
@@ -174,6 +173,8 @@ public:
 				sumPrice += cars[i].GetPrice();
 			}
 		}
+
+		return sumPrice;
 	}
 	
 	void Discont()
