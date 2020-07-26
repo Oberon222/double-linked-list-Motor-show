@@ -17,6 +17,7 @@ public:
 	void AddCar(Car elem)
 	{
 		cars.push_back(elem);
+		cout<<"Test"<<endl;
 	}
 
 	
@@ -163,7 +164,7 @@ public:
 
 	}
 	
-	void SumaPrice() //  çàãàëüíà âàðò³ñòü ìàøèí, â³ê ÿêèõ ìåíøå 5 ðîê³â
+	void SumaPrice() //  Ã§Ã Ã£Ã Ã«Ã¼Ã­Ã  Ã¢Ã Ã°Ã²Â³Ã±Ã²Ã¼ Ã¬Ã Ã¸Ã¨Ã­, Ã¢Â³Ãª Ã¿ÃªÃ¨Ãµ Ã¬Ã¥Ã­Ã¸Ã¥ 5 Ã°Ã®ÃªÂ³Ã¢
 	{
 		int sumPrice=0;
 		for (int i = 0; i < cars.size(); i++)
