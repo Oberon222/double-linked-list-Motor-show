@@ -95,7 +95,7 @@ public:
 
 	void SortByPrice()
 	{
-		
+		sort(cars.begin(), cars.end());
 	}
 
 	void SerchByName(string name)const
@@ -145,10 +145,21 @@ public:
 
 	}
 
-	void Euro_5()
+	int Euro_5()
 	{
-		int countEuro_5=0;
-		countEuro_5=count_if(cars.begin(),cars.end(),[] (int myYear){return }
+		/*int countEuro_5=0;
+		
+		countEuro_5=count_if(cars.begin(),cars.end(),[] (int myYear){return }*/
+
+		int countCar2016 = 0;
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetGraduationYear() == 2016)
+			{
+				countCar2016++;
+			}
+
+		}
 
 	}
 	
