@@ -60,13 +60,13 @@ public:
 
 	void SortByNane()
 	{
-		/*sort(cars.begin(), cars.end());*/
+		sort(cars.begin(), cars.end(), CompareByName);
 
-			for (int i = 0; i < cars.size(); i++)
+			/*for (int i = 0; i < cars.size(); i++)
 			{
 				sort(cars.begin()[i].GetName(), cars.end()[i].GetName());
 
-			}
+			}*/
 
 	}
 
@@ -153,10 +153,12 @@ public:
 		int countCar2016 = 0;
 		for (int i = 0; i < cars.size(); i++)
 		{
-			if (cars[i].GetGraduationYear() == 2016)
+			/*if (cars[i].GetGraduationYear() == 2016)
 			{
 				countCar2016++;
-			}
+			}*/
+
+			count_if(cars.begin(),cars.end(), greater))
 
 		}
 
@@ -188,6 +190,24 @@ public:
 		}
 	}
 
+	void CheckGraduationYear()
+	{
 
+	}
 
+	void CheckCarPrice()
+	{
+
+	}
+
+	void CechCarEngineÑapacity()
+	{
+
+	}
 };
+
+
+bool CompareByName(const Car c1, const Car c2)
+{
+	return c1.GetName() > c2.GetName();
+}
