@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
 #include<string>
-#include<list>
+#include<vector>
 #include"Car.h"
+#include<algorithm>
 using namespace std;
 
 class MotorShow
 {
-	list< Car> cars;
+	vector< Car> cars;
 
 public:
 
@@ -16,103 +17,177 @@ public:
 	void AddCar(Car elem)
 	{
 		cars.push_back(elem);
+		cout<<"Test"<<endl;
 	}
 
 	
 
-	void DeleteCar()
+	void DeleteCar(int position)
 	{
-		for ()
+		if (position > cars.size())
 		{
-			
+			cout << "Such a position does not exist"
+				"Position number should not exceed " << cars.size() << endl;
 		}
 		
+		cars.erase(cars.begin(), cars.begin() + (position - 1));
+
+	}
+
+	void DeleteCar()
+	{
+		/*cars.erase(remove_if(cars.begin(), cars.end(), [](auto& value) {return value = 2000; }), cars.end());*/
+
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetGraduationYear() == 2000)
+			{
+				cars.erase(cars.begin(), cars.begin() + i);
+				
+			}
+		}
+	
 	}
 
 	void ShowInfo()const
 	{
-		for()
+		for (int i = 0; i < cars.size(); i++)
+		{
+			cars[i].ShowCarInfo();
+		
+		}
 	}
 
 	void SortByNane()
 	{
-		cars.sort(CompareCarByName);
-		for (Car c : cars)
-		{
-			c.ShowCarInfo();
-		}
+		/*sort(cars.begin(), cars.end());*/
+
+			for (int i = 0; i < cars.size(); i++)
+			{
+				sort(cars.begin()[i].GetName(), cars.end()[i].GetName());
+
+			}
+
 	}
 
 	void SortByGraduationYear()
 	{
-		cars.sort(CompareCarByGraduationYear);
-		for (Car c : cars)
+		for (int i = 0; i < cars.size()-1; i++)
 		{
-			c.ShowCarInfo();
+			for (int j = 0; j < cars.size()-1; j++)
+			{
+				if (cars[j].GetGraduationYear() > cars[j + 1].GetGraduationYear())
+				{
+					Car tmp = cars[j];
+					cars[j] = cars[j + 1];
+					cars[j + 1] = tmp;
+				}
+			}
 		}
 	}
 
 	void SortByEngineCapacity()
 	{
-		cars.sort(CompareCarByEngineCapacity);
-		for (Car c : cars)
+		for (int i = 0; i < cars.size(); i++)
 		{
-			c.ShowCarInfo();
+			sort(cars.begin()[i].GetEngineCapacity(), cars.end()[i].GetEngineCapacity());
 		}
 	}
 
 	void SortByPrice()
 	{
-		cars.sort(CompareCarByPrice);
-		for (Car c : cars)
-		{
-			c.ShowCarInfo();
-		}
+		sort(cars.begin(), cars.end());
 	}
 
 	void SerchByName(string name)const
 	{
-		
-		for (auto iter = cars.begin(); iter != cars.end(); ++iter)
+		for (int i = 0; i < cars.size(); i++)
 		{
-			
+			if (cars[i].GetName() == name)
+			{
+				cars[i].ShowCarInfo();
+
+			}
 		}
 	}
 
 	void SerchByGraduationYear(int graduationYear)const
 	{
-
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetGraduationYear() == graduationYear)
+			{
+				cars[i].ShowCarInfo();
+			}
+		}
 	}
 	void SerchByEngineCapacity(double engineCapacity)const
 	{
-
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetEngineCapacity() == engineCapacity)
+			{
+				cars[i].ShowCarInfo();
+			}
+		}
 	}
 
 	void SerchByPrice(int price)
 	{
-
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetPrice() == price)
+			{
+				cars[i].ShowCarInfo();
+			}
+		}
 
 	}
 
+	int Euro_5()
+	{
+		/*int countEuro_5=0;
+		
+		countEuro_5=count_if(cars.begin(),cars.end(),[] (int myYear){return }*/
+
+		int countCar2016 = 0;
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if (cars[i].GetGraduationYear() == 2016)
+			{
+				countCar2016++;
+			}
+
+		}
+
+		return countCar2016;
+	}
 	
-	bool CompareCarByName(const Car& c1, const Car& c2)
+	int SumaPrice() //  cars under 5 years
 	{
-		return c1.GetName() < c2.GetName();
+		int sumPrice=0;
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if ((2020 - cars[i].GetGraduationYear()) < 5)
+			{
+				sumPrice += cars[i].GetPrice();
+			}
+		}
+
+		return sumPrice;
+	}
+	
+	void Discont()
+	{
+		for (int i = 0; i < cars.size(); i++)
+		{
+			if ((2020 - cars[i].GetGraduationYear()) > 15)
+			{
+				cars[i].SetPrice(cars[i].GetPrice() * 0.2);
+			}
+		}
 	}
 
-	bool CompareCarByGraduationYear(const Car& c1, const Car& c2)
-	{
-		return c1.GetGraduationYear() < c2.GetGraduationYear();
-	}
 
-	bool CompareCarByEngineCapacity(const Car& c1, const Car& c2)
-	{
-		return c1.GetEngineCapacity() < c2.GetEngineCapacity();
-	}
-
-	bool CompareCarByPrice(const Car& c1, const Car& c2)
-	{
-		return c1.GetPrice() < c2.GetPrice();
-	}
 
 };

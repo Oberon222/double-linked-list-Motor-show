@@ -36,6 +36,11 @@ public:
 		return price;
 	}
 
+	void SetPrice(int price)
+	{
+		this->price = price;
+	}
+
 	void ShowCarInfo()const
 	{
 		cout << "Car name: " << name << endl;
