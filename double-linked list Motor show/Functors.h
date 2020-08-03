@@ -14,10 +14,8 @@ public:
 
 			sumaPriceCars += valuePrice;
 		}
-
 		return sumaPriceCars;
 	}
-
 };
 
 class FunctorCountEURO_5
@@ -31,23 +29,22 @@ public:
 		{
 			countEuro5++;
 		}
-		return countEuro5;
+		
 	}
 };
 
 class FunctorDiscont
 {
+	
 public:
 
 	int operator ()(int valueGraduationYear, int valuePrice)
 	{
-		int discontPrice;
-
 		if (2020 - valueGraduationYear > 15)
 		{
-			discontPrice = valuePrice * 0.2;
+			return  valuePrice * 0.2;
 		}
 
-		return discontPrice;
+		return 0;
 	}
 };

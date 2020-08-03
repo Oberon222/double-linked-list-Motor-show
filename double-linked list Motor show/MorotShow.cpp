@@ -105,3 +105,44 @@ void MotorShow::SerchByPrice(int price)
 		}
 	}
 }
+
+int MotorShow::Euro_5()
+{
+	FunctorCountEURO_5 count;
+
+	for (auto element : cars)
+	{
+		count(element.GetGraduationYear());
+	}
+
+	
+}
+
+void MotorShow::SumaPrice()
+{
+	FunctorSumaCars sc;
+
+	for (auto element : cars)
+	{
+		sc(element.GetGraduationYear(), element.GetPrice());
+	}
+}
+
+void MotorShow::Discont()
+{
+	FunctorDiscont fd;
+
+	for (auto element : cars)
+	{
+		element.SetPrice(fd(element.GetGraduationYear(), element.GetPrice()));
+	}
+
+
+	/*for (auto element : cars)
+	{
+		if (2020 - element.GetGraduationYear() > 15)
+		{
+			element.SetPrice(element.GetPrice() * 0.2);
+		}
+	}*/
+}

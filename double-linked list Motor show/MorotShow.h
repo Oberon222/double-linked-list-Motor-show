@@ -41,51 +41,50 @@ public:
 
 	void SerchByPrice(int price);
 
-	void Euro_5() // зробити повернення методу
-	{
-		FunctorCountEURO_5 count;
+	int Euro_5(); // зробити повернення методу
 
-		for (auto element : cars)
-		{
-			count(element.GetGraduationYear());
-		}
-	}
+	void SumaPrice(); //  cars under 5 years // зробити повернення методу
 
-	void SumaPrice() //  cars under 5 years // зробити повернення методу
-	{
-		FunctorSumaCars sc;
-
-		for (auto element : cars)
-		{
-			sc(element.GetGraduationYear(), element.GetPrice());
-		}
-
-		
-	}
-	
-	void Discont()
-	{
-		FunctorDiscont fd;
-
-		for (auto element : cars)
-		{
-			fd(element.GetGraduationYear(), element.GetPrice());
-		}
-	}
+	void Discont();
 
 	void CheckGraduationYear()
 	{
+		/*auto is_Correct_year_Graduation = [](int elem) {return (elem > 2000); };
+
+		for (auto element : cars)
+		{
+			if (all_of(cars.begin(), cars.end(), is_Correct_year_Graduation(element.GetGraduationYear())))
+				cout << "All cars have the correct year of manufacture" << endl;
+			else
+				cout << "Not all cars have the correct year of manufacture" << endl;
+		}*/
+		if (all_of(cars.begin(), cars.end(), ConditionCompareByGraduationYear))
+			cout << "All cars have the correct year of manufacture" << endl;
+		else
+			cout << "Not all cars have the correct year of manufacture" << endl;
 
 	}
 
 	void CheckCarPrice()
 	{
-
+		if (any_of(cars.begin(), cars.end(), ConditionCompareByPrice))
+			cout << "Car, with a price of 100,000 are available" << endl;
+		else
+			cout << "car, with a price of 100,000 is not available" << endl;
 	}
 
 	void CechCarEngineСapacity()
 	{
 
+		if (none_of(cars.begin(), cars.end(), ConditionCompareByEngineCapacity))
+		{
+			cout << "cars with an engine capacity less than 1.0 not found" << endl;
+		}
+
+		else
+		{
+			cout << "a car with an engine capacity of less than 1.0 is available" << endl;
+		}
 	}
 };
 
@@ -111,4 +110,18 @@ bool CompareByPrice(const Car c1, const Car c2)
 }
 
 
+bool ConditionCompareByGraduationYear(const Car c1)
+{
+	return c1.GetGraduationYear() > 2000;
+}
+
+bool ConditionCompareByPrice(const Car c1)
+{
+	return c1.GetPrice() > 100000;
+}
+
+bool ConditionCompareByEngineCapacity(const Car c1)
+{
+	return c1.GetEngineCapacity() < 1.0;
+}
 
