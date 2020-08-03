@@ -4,6 +4,7 @@
 #include<vector>
 #include"Car.h"
 #include<algorithm>
+#include"Functors.h"
 using namespace std;
 
 class MotorShow
@@ -14,180 +15,79 @@ public:
 
 	MotorShow() { }
 
-	void AddCar(Car elem)
-	{
-		cars.push_back(elem);
-		cout<<"Test"<<endl;
-	}
+	void Print(string st);
 
-	
+	void AddCar(Car elem);
 
-	void DeleteCar(int position)
-	{
-		if (position > cars.size())
-		{
-			cout << "Such a position does not exist"
-				"Position number should not exceed " << cars.size() << endl;
-		}
-		
-		cars.erase(cars.begin(), cars.begin() + (position - 1));
+	void DeleteCar(int position);
 
-	}
+	void DeleteCar();
 
-	void DeleteCar()
-	{
-		/*cars.erase(remove_if(cars.begin(), cars.end(), [](auto& value) {return value = 2000; }), cars.end());*/
+	void ShowInfo()const;
 
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if (cars[i].GetGraduationYear() == 2000)
-			{
-				cars.erase(cars.begin(), cars.begin() + i);
-				
-			}
-		}
-	
-	}
+	void SortByNane();
 
-	void ShowInfo()const
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			cars[i].ShowCarInfo();
-		
-		}
-	}
+	void SortByGraduationYear();
 
-	void SortByNane()
-	{
-		/*sort(cars.begin(), cars.end());*/
+	void SortByEngineCapacity();
 
-			for (int i = 0; i < cars.size(); i++)
-			{
-				sort(cars.begin()[i].GetName(), cars.end()[i].GetName());
+	void SortByPrice();
 
-			}
+	void SerchByName(string name)const;
 
-	}
+	void SerchByGraduationYear(int graduationYear)const;
 
-	void SortByGraduationYear()
-	{
-		for (int i = 0; i < cars.size()-1; i++)
-		{
-			for (int j = 0; j < cars.size()-1; j++)
-			{
-				if (cars[j].GetGraduationYear() > cars[j + 1].GetGraduationYear())
-				{
-					Car tmp = cars[j];
-					cars[j] = cars[j + 1];
-					cars[j + 1] = tmp;
-				}
-			}
-		}
-	}
+	void SerchByEngineCapacity(double engineCapacity)const;
 
-	void SortByEngineCapacity()
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			sort(cars.begin()[i].GetEngineCapacity(), cars.end()[i].GetEngineCapacity());
-		}
-	}
+	void SerchByPrice(int price);
 
-	void SortByPrice()
-	{
-		sort(cars.begin(), cars.end());
-	}
+	void Euro_5(); // зробити повернення методу
 
-	void SerchByName(string name)const
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if (cars[i].GetName() == name)
-			{
-				cars[i].ShowCarInfo();
+	void SumaPrice(); //  cars under 5 years // зробити повернення методу
 
-			}
-		}
-	}
+	void Discont();
 
-	void SerchByGraduationYear(int graduationYear)const
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if (cars[i].GetGraduationYear() == graduationYear)
-			{
-				cars[i].ShowCarInfo();
-			}
-		}
-	}
-	void SerchByEngineCapacity(double engineCapacity)const
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if (cars[i].GetEngineCapacity() == engineCapacity)
-			{
-				cars[i].ShowCarInfo();
-			}
-		}
-	}
+	void CheckGraduationYear(); 
 
-	void SerchByPrice(int price)
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if (cars[i].GetPrice() == price)
-			{
-				cars[i].ShowCarInfo();
-			}
-		}
+	void CheckCarPrice();
 
-	}
-
-	int Euro_5()
-	{
-		/*int countEuro_5=0;
-		
-		countEuro_5=count_if(cars.begin(),cars.end(),[] (int myYear){return }*/
-
-		int countCar2016 = 0;
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if (cars[i].GetGraduationYear() == 2016)
-			{
-				countCar2016++;
-			}
-
-		}
-
-		return countCar2016;
-	}
-	
-	int SumaPrice() //  cars under 5 years
-	{
-		int sumPrice=0;
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if ((2020 - cars[i].GetGraduationYear()) < 5)
-			{
-				sumPrice += cars[i].GetPrice();
-			}
-		}
-
-		return sumPrice;
-	}
-	
-	void Discont()
-	{
-		for (int i = 0; i < cars.size(); i++)
-		{
-			if ((2020 - cars[i].GetGraduationYear()) > 15)
-			{
-				cars[i].SetPrice(cars[i].GetPrice() * 0.2);
-			}
-		}
-	}
-
-
-
+	void CechCarEngineСapacity() ;
 };
+
+
+bool CompareByName(const Car c1, const Car c2)
+{
+	return c1.GetName() > c2.GetName();
+}
+
+bool CompareByGraduationYear(const Car c1, const Car c2)
+{
+	return c1.GetGraduationYear() > c2.GetGraduationYear();
+}
+
+bool CompareByEngineCapacity(const Car c1, const Car c2)
+{
+	return c1.GetEngineCapacity() > c2.GetEngineCapacity();
+}
+
+bool CompareByPrice(const Car c1, const Car c2)
+{
+	return c1.GetPrice() > c2.GetPrice();
+}
+
+
+bool ConditionCompareByGraduationYear(const Car c1)
+{
+	return c1.GetGraduationYear() > 2000;
+}
+
+bool ConditionCompareByPrice(const Car c1)
+{
+	return c1.GetPrice() > 100000;
+}
+
+bool ConditionCompareByEngineCapacity(const Car c1)
+{
+	return c1.GetEngineCapacity() < 1.0;
+}
+

@@ -13,7 +13,7 @@ class Car
 public:
 	Car() : name(" "), graduationYear(0), engineCapacity(0.0), price(0) { }
 
-	Car() : name(name), graduationYear(graduationYear), engineCapacity(engineCapacity), price(price)
+	Car(string name, int graduationYear, double engineCapacity, int price) : name(name), graduationYear(graduationYear), engineCapacity(engineCapacity), price(price)
 	{ }
 
 	string GetName()const

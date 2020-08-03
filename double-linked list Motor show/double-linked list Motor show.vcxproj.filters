@@ -18,12 +18,18 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MorotShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MorotShow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Functors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
