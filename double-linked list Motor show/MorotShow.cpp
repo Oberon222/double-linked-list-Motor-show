@@ -1,5 +1,10 @@
 #include "MorotShow.h"
 
+void MotorShow::Print(string st)
+{
+	cout << st << endl;
+}
+
 void MotorShow::AddCar(Car elem)
 {
 		cars.push_back(elem);
@@ -21,7 +26,7 @@ void MotorShow::DeleteCar()
 {
 	for (int i = 0; i < cars.size(); i++)
 	{
-		if (cars[i].GetGraduationYear() <= 2000)
+		if (cars[i].GetGraduationYear() < 2000)
 		{
 			cars.erase(cars.begin(), cars.begin() + i);
 		}
@@ -30,11 +35,6 @@ void MotorShow::DeleteCar()
 
 void MotorShow::ShowInfo() const
 {
-	/*for (int i = 0; i < cars.size(); i++)
-	{
-		cars[i].ShowCarInfo();
-
-	}*/
 
 	for (auto element : cars)
 	{
@@ -106,7 +106,7 @@ void MotorShow::SerchByPrice(int price)
 	}
 }
 
-int MotorShow::Euro_5()
+void MotorShow::Euro_5()
 {
 	FunctorCountEURO_5 count;
 
@@ -114,8 +114,6 @@ int MotorShow::Euro_5()
 	{
 		count(element.GetGraduationYear());
 	}
-
-	
 }
 
 void MotorShow::SumaPrice()
@@ -145,4 +143,43 @@ void MotorShow::Discont()
 			element.SetPrice(element.GetPrice() * 0.2);
 		}
 	}*/
+}
+
+void MotorShow::CheckGraduationYear() 
+{
+	/*auto is_Correct_year_Graduation = [](int elem) {return (elem > 2000); };
+
+		for (auto element : cars)
+		{
+			if (all_of(cars.begin(), cars.end(), is_Correct_year_Graduation(element.GetGraduationYear())))
+				cout << "All cars have the correct year of manufacture" << endl;
+			else
+				cout << "Not all cars have the correct year of manufacture" << endl;
+	}*/
+
+	if (all_of(cars.begin(), cars.end(), ConditionCompareByGraduationYear))
+		Print("All cars have the correct year of manufacture");
+
+		
+	else
+		Print("Not all cars have the correct year of manufacture");
+}
+
+void MotorShow::CheckCarPrice() 
+{
+	if (any_of(cars.begin(), cars.end(), ConditionCompareByPrice))
+		Print("Car, with a price of 100,000 are available");
+	else
+		Print("Car, with a price of 100,000 is not available");
+}
+
+void MotorShow::CechCarEngineÑapacity() 
+{
+	if (none_of(cars.begin(), cars.end(), ConditionCompareByEngineCapacity))
+	
+		Print("Cars with an engine capacity less than 1.0 not found");
+
+	else
+	
+		Print("A car with an engine capacity of less than 1.0 is available");
 }

@@ -7,8 +7,6 @@
 #include"Functors.h"
 using namespace std;
 
-
-
 class MotorShow
 {
 	vector< Car> cars;
@@ -16,6 +14,8 @@ class MotorShow
 public:
 
 	MotorShow() { }
+
+	void Print(string st);
 
 	void AddCar(Car elem);
 
@@ -41,51 +41,17 @@ public:
 
 	void SerchByPrice(int price);
 
-	int Euro_5(); // çðîáèòè ïîâåðíåííÿ ìåòîäó
+	void Euro_5(); // çðîáèòè ïîâåðíåííÿ ìåòîäó
 
 	void SumaPrice(); //  cars under 5 years // çðîáèòè ïîâåðíåííÿ ìåòîäó
 
 	void Discont();
 
-	void CheckGraduationYear()
-	{
-		/*auto is_Correct_year_Graduation = [](int elem) {return (elem > 2000); };
+	void CheckGraduationYear(); 
 
-		for (auto element : cars)
-		{
-			if (all_of(cars.begin(), cars.end(), is_Correct_year_Graduation(element.GetGraduationYear())))
-				cout << "All cars have the correct year of manufacture" << endl;
-			else
-				cout << "Not all cars have the correct year of manufacture" << endl;
-		}*/
-		if (all_of(cars.begin(), cars.end(), ConditionCompareByGraduationYear))
-			cout << "All cars have the correct year of manufacture" << endl;
-		else
-			cout << "Not all cars have the correct year of manufacture" << endl;
+	void CheckCarPrice();
 
-	}
-
-	void CheckCarPrice()
-	{
-		if (any_of(cars.begin(), cars.end(), ConditionCompareByPrice))
-			cout << "Car, with a price of 100,000 are available" << endl;
-		else
-			cout << "car, with a price of 100,000 is not available" << endl;
-	}
-
-	void CechCarEngineÑapacity()
-	{
-
-		if (none_of(cars.begin(), cars.end(), ConditionCompareByEngineCapacity))
-		{
-			cout << "cars with an engine capacity less than 1.0 not found" << endl;
-		}
-
-		else
-		{
-			cout << "a car with an engine capacity of less than 1.0 is available" << endl;
-		}
-	}
+	void CechCarEngineÑapacity() ;
 };
 
 

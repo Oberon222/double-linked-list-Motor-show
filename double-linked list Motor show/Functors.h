@@ -30,7 +30,9 @@ public:
 			countEuro5++;
 		}
 		
+		return countEuro5;
 	}
+	
 };
 
 class FunctorDiscont
